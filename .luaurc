@@ -8,7 +8,9 @@
         "Utility": "src/Shared/Utility/",
         "ServerUtility": "src/Server/Source/Utility/",
         "ClientUtility": "src/Client/Source/Utility/",
-        "Interface": "src/Client/Source/Interface/"
+        "Interface": "src/Client/Source/Interface/",
+        "ServerModules": "src/Server/Source/Modules/",
+        "ServerClasses": "src/Server/Source/Classes/"
     },
     "languageMode": "strict"
 }

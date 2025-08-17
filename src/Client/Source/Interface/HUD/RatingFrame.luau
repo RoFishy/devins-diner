@@ -20,7 +20,7 @@ local function RatingFrame(Scope: Fusion.Scope<typeof(Fusion)>, Props: RatingFra
 		AnchorPoint = Vector2.new(0.5, 0),
 		BackgroundTransparency = 1,
 		Position = Props.Position,
-		Size = UDim2.fromScale(0.159762, 0.0451211),
+		Size = UDim2.fromScale(0.267, 0.076),
 
 		[Children] = {
 			Scope:New("UIListLayout")({

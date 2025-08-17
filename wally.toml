@@ -12,6 +12,8 @@ Replica = "azutreo/replica@1.0.1"
 Fusion = "elttob/fusion@0.3.0"
 Lyra = "paradoxum-games/lyra@0.6.0"
 TypedPromise = "howmanysmall/typed-promise@4.0.6"
+Component = "sleitnick/component@2.4.8"
+Janitor = "howmanysmall/janitor@1.18.3"
 
 [server-dependencies]
 cmdr = "evaera/cmdr@1.12.0"

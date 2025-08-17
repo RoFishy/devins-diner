@@ -12,6 +12,8 @@ local Controls = {
 	Wallet = 0,
 	Bank = 0,
 	Bills = 0,
+
+	Energy = 0,
 }
 
 local Story = {
@@ -28,6 +30,8 @@ local Story = {
 			Wallet = props.controls.Wallet,
 			Bank = props.controls.Bank,
 			Bills = props.controls.Bills,
+
+			Energy = props.controls.Energy,
 		})
 	end,
 }

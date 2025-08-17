@@ -3,6 +3,7 @@ local Fusion = require("@Packages/Fusion")
 
 -- // stuff
 local Button = require("@Interface/HUD/Button")
+local EnergyBar = require("@Interface/HUD/EnergyBar")
 local LeftDisplay = require("@Interface/HUD/LeftDisplay")
 local RatingFrame = require("@Interface/HUD/RatingFrame")
 local TimeLabel = require("@Interface/HUD/TimeLabel")
@@ -21,6 +22,8 @@ type HUDProps = {
 	Wallet: Fusion.Value<number>,
 	Bank: Fusion.Value<number>,
 	Bills: Fusion.Value<number>,
+
+	Energy: Fusion.Value<number>,
 }
 
 -- // const
@@ -178,6 +181,21 @@ local function HUD(Scope: Scope<typeof(Fusion)>, Props: HUDProps)
 							return UDim2.fromScale(0, 0.5)
 						else
 							return UDim2.fromScale(-0.5, 0.5)
+						end
+					end),
+					TWEEN_INFO
+				),
+			}),
+
+			-- // Energy Bar
+			EnergyBar(Scope, {
+				Energy = Props.Energy,
+				Position = Scope:Tween(
+					Scope:Computed(function(Use)
+						if Use(Props.Enabled) == true then
+							return UDim2.fromScale(0, 0.915793)
+						else
+							return UDim2.fromScale(-0.5, 0.915793)
 						end
 					end),
 					TWEEN_INFO

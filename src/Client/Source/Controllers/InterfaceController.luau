@@ -11,6 +11,8 @@ local Fusion = require("@Packages/Fusion")
 -- // utils
 local Signals = require("@ClientUtility/Signals")
 
+local Network = require("@Shared/Network")
+
 -- // stuff
 local HUD = require("@Interface/HUD")
 
@@ -27,6 +29,8 @@ local Wallet = UIScope:Value(0)
 local Bank = UIScope:Value(0)
 local Bills = UIScope:Value(0)
 
+local Energy = UIScope:Value(0)
+
 -- // Obj
 local ScreenGui: ScreenGui
 
@@ -41,6 +45,11 @@ function InterfaceController:Init()
 end
 
 function InterfaceController:Start()
+	Network.Data.SyncData:connect(function(Data)
+		Wallet:set(Data.Cash)
+		Energy:set(Data.Energy)
+	end)
+
 	HUD(HUDScope, {
 		Parent = ScreenGui,
 		Enabled = HUDEnabled,
@@ -50,6 +59,8 @@ function InterfaceController:Start()
 		Wallet = Wallet,
 		Bank = Bank,
 		Bills = Bills,
+
+		Energy = Energy,
 	})
 
 	Signals.CloseAllFrames:Connect(function() end)
