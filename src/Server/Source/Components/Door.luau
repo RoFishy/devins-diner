@@ -1,6 +1,7 @@
 -- // Packages
 local Component = require("@Packages/Component") :: any
 local Janitor = require("@Packages/Janitor")
+local ZonePlus = require("@Packages/ZonePlus")
 
 -- // Modules
 local Network = require("@Shared/Network")
@@ -41,10 +42,10 @@ function Door:Start()
 	self._janitor:Add(OpenZone)
 
 	local DoorOpened = false
-	local CloseConnection: thread? = nil
-
 	local DoorDefaultCFrame = Model.Door:GetPivot()
 	local Door1DefaultCFrame = Model.Door1:GetPivot()
+
+	local MainZone = ZonePlus.new(Model.OpenZone)
 
 	local function OpenDoors(Direction: "Inside" | "Outside")
 		DoorOpened = true
@@ -83,37 +84,8 @@ function Door:Start()
 
 	OpenZone.partTouched(function(_Model: Model)
 		if _Model:FindFirstChildOfClass("Humanoid") then
+			MainZone:trackItem(_Model)
 			if not DoorOpened then
-				if not CloseConnection then
-					CloseConnection = task.spawn(function()
-						while task.wait(0.5) do
-							local Found = false
-
-							local InsideParts = workspace:GetPartsInPart(Model.OpenZone.Inside)
-							for _, Part in InsideParts do
-								if Part.Parent and Part.Parent:FindFirstChildOfClass("Humanoid") then
-									Found = true
-									continue
-								end
-							end
-
-							local OutsideParts = workspace:GetPartsInPart(Model.OpenZone.Outside)
-							for _, Part in OutsideParts do
-								if Part.Parent and Part.Parent:FindFirstChildOfClass("Humanoid") then
-									Found = true
-									continue
-								end
-							end
-
-							if Found then
-								continue
-							end
-							CloseDoors()
-							break
-						end
-						CloseConnection = nil
-					end)
-				end
 				task.wait(0.2)
 				local InsideParts = workspace:GetPartsInPart(Model.OpenZone.Inside)
 				for _, Part in InsideParts do
@@ -132,6 +104,27 @@ function Door:Start()
 				end
 			end
 		end
+	end)
+
+	MainZone.itemExited:Connect(function(item)
+		MainZone:untrackItem(item)
+
+		task.wait(0.2)
+		local InsideParts = workspace:GetPartsInPart(Model.OpenZone.Inside)
+		for _, Part in InsideParts do
+			if Part.Parent and Part.Parent:FindFirstChildOfClass("Humanoid") then
+				return
+			end
+		end
+
+		local OutsideParts = workspace:GetPartsInPart(Model.OpenZone.Outside)
+		for _, Part in OutsideParts do
+			if Part.Parent and Part.Parent:FindFirstChildOfClass("Humanoid") then
+				return
+			end
+		end
+
+		CloseDoors()
 	end)
 end
 

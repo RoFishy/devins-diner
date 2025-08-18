@@ -13,6 +13,11 @@ version = "0.3.0"
 dependencies = []
 
 [[package]]
+name = "encrxyptedethan/zoneplus"
+version = "3.2.0"
+dependencies = []
+
+[[package]]
 name = "evaera/cmdr"
 version = "1.12.0"
 dependencies = []
@@ -35,17 +40,12 @@ dependencies = [["Promise", "evaera/promise@4.0.0"]]
 [[package]]
 name = "hspee/devinsdiner"
 version = "0.1.0"
-dependencies = [["Component", "sleitnick/component@2.4.8"], ["Fusion", "elttob/fusion@0.3.0"], ["Janitor", "howmanysmall/janitor@1.18.3"], ["Lyra", "paradoxum-games/lyra@0.6.0"], ["Remo", "littensy/remo@1.5.2"], ["Replica", "azutreo/replica@1.0.1"], ["Signal", "sleitnick/signal@2.0.3"], ["TypedPromise", "howmanysmall/typed-promise@4.0.6"], ["ZonePlus", "mattschrubb/zoneplus@3.2.0"], ["t", "osyrisrblx/t@3.1.1"], ["cmdr", "evaera/cmdr@1.12.0"]]
+dependencies = [["Component", "sleitnick/component@2.4.8"], ["Fusion", "elttob/fusion@0.3.0"], ["Janitor", "howmanysmall/janitor@1.18.3"], ["Lyra", "paradoxum-games/lyra@0.6.0"], ["Remo", "littensy/remo@1.5.2"], ["Replica", "azutreo/replica@1.0.1"], ["Signal", "sleitnick/signal@2.0.3"], ["TypedPromise", "howmanysmall/typed-promise@4.0.6"], ["ZonePlus", "encrxyptedethan/zoneplus@3.2.0"], ["t", "osyrisrblx/t@3.1.1"], ["cmdr", "evaera/cmdr@1.12.0"]]
 
 [[package]]
 name = "littensy/remo"
 version = "1.5.2"
 dependencies = [["Promise", "evaera/promise@4.0.0"]]
-
-[[package]]
-name = "mattschrubb/zoneplus"
-version = "3.2.0"
-dependencies = []
 
 [[package]]
 name = "osyrisrblx/t"
