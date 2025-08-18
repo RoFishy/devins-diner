@@ -150,6 +150,7 @@ local function HUD(Scope: Scope<typeof(Fusion)>, Props: HUDProps)
 						Size = UDim2.fromScale(0.123606, 0.694667),
 						Icon = "rbxassetid://84057639414523",
 						Text = "Rewards",
+						Frame = "Rewards",
 					}),
 				},
 			}),

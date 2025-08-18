@@ -1,5 +1,6 @@
 -- // Packages
 local Fusion = require("@Packages/Fusion")
+local UILabs = require("@Packages/UI-Labs")
 
 -- // HUD
 local HUD = require("@Interface/HUD")
@@ -7,7 +8,7 @@ local HUD = require("@Interface/HUD")
 local Controls = {
 	Enabled = true,
 	Time = "00:00 AM",
-	Rating = 0,
+	Rating = UILabs.Slider(1, 0, 5, 0.25),
 
 	Wallet = 0,
 	Bank = 0,

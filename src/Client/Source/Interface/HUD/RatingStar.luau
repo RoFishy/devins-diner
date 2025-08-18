@@ -8,7 +8,7 @@ local Children = Fusion.Children
 type UsedAs<T> = Fusion.UsedAs<T>
 type StarProps = {
 	LayoutOrder: UsedAs<number>,
-	Fill: number,
+	Fill: UsedAs<number>,
 }
 
 local function RatingStar(Scope: Fusion.Scope<typeof(Fusion)>, Props: StarProps)

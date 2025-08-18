@@ -29,4 +29,9 @@ return {
 			until Result.IsFinished
 		end)
 	end,
+	IsInGroup = function(Player: Player, GroupId: number)
+		return Promise.new(function(resolve)
+			resolve(Player:IsInGroup(GroupId))
+		end)
+	end,
 }

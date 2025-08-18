@@ -15,6 +15,7 @@ TypedPromise = "howmanysmall/typed-promise@4.0.6"
 Component = "sleitnick/component@2.4.8"
 Janitor = "howmanysmall/janitor@1.18.3"
 ZonePlus = "encrxyptedethan/zoneplus@3.2.0"
+UI-Labs = "pepeeltoro41/ui-labs@2.4.1"
 
 [server-dependencies]
 cmdr = "evaera/cmdr@1.12.0"
