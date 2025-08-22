@@ -14,8 +14,6 @@ local Blur = Lighting:WaitForChild("Blur")
 -- // utils
 local Signals = require("@ClientUtility/Signals")
 
-local Network = require("@Shared/Network")
-
 -- // package
 local Fusion = require("@Packages/Fusion")
 
@@ -56,23 +54,25 @@ function InterfaceController:Init()
 end
 
 function InterfaceController:Start()
-	Network.Data.SyncData:connect(function(Data)
+	Signals.PlayerDataChanged:Connect(function(Data)
 		Values.Wallet:set(Data.Cash)
 		Values.Energy:set(Data.Energy)
 	end)
 
-	HUD(Scopes.HUDScope, {
-		Parent = ScreenGui,
-		Enabled = Values.HUDEnabled,
-		Time = Values.Time,
-		Rating = Values.Rating,
+	task.delay(1, function()
+		HUD(Scopes.HUDScope, {
+			Parent = ScreenGui,
+			Enabled = Values.HUDEnabled,
+			Time = Values.Time,
+			Rating = Values.Rating,
 
-		Wallet = Values.Wallet,
-		Bank = Values.Bank,
-		Bills = Values.Bills,
+			Wallet = Values.Wallet,
+			Bank = Values.Bank,
+			Bills = Values.Bills,
 
-		Energy = Values.Energy,
-	})
+			Energy = Values.Energy,
+		})
+	end)
 
 	Signals.CloseAllFrames:Connect(function()
 		self:CloseAllFrames()

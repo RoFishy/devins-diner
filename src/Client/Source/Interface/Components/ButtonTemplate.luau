@@ -12,6 +12,9 @@ local Hover = SoundService:WaitForChild("Hover") :: Sound
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 
+-- // component
+local Shimmer = require("@Interface/Components/Shimmer")
+
 -- // types
 type UsedAs<T> = Fusion.UsedAs<T>
 type Scope<T> = Fusion.Scope<T>
@@ -67,6 +70,10 @@ local function ImageButton(Scope: Scope<typeof(Fusion)>, Props: ButtonProps)
 					end),
 					TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
 				),
+			}),
+			Shimmer(Scope, {
+				Enabled = Hovering,
+				Corner = UDim.new(0.2, 0),
 			}),
 			Props[Children],
 		},

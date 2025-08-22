@@ -12,7 +12,7 @@ type UsedAs<T> = Fusion.UsedAs<T>
 type Scope<T> = Fusion.Scope<T>
 type CloseButtonProps = {
 	Position: UsedAs<UDim2>,
-	Frame: UsedAs<string>,
+	Frame: string,
 	Size: UsedAs<UDim2>,
 	AspectRatio: UsedAs<number>?,
 }
