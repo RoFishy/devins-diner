@@ -14,6 +14,8 @@ local Blur = Lighting:WaitForChild("Blur")
 -- // utils
 local Signals = require("@ClientUtility/Signals")
 
+local TweenNumber = require("@Utility/TweenNumber")
+
 -- // package
 local Fusion = require("@Packages/Fusion")
 
@@ -54,9 +56,11 @@ function InterfaceController:Init()
 end
 
 function InterfaceController:Start()
-	Signals.PlayerDataChanged:Connect(function(Data)
-		Values.Wallet:set(Data.Cash)
-		Values.Energy:set(Data.Energy)
+	Signals.PlayerDataChanged:Connect(function(OldData, NewData)
+		TweenNumber(OldData.Cash, NewData.Cash, function(i)
+			Values.Wallet:set(i)
+		end)
+		Values.Energy:set(NewData.Energy)
 	end)
 
 	task.delay(1, function()

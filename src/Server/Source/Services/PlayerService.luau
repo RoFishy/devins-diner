@@ -32,10 +32,11 @@ local function CachePlayerFriends(Player: Player)
 	end)
 end
 
-local function SyncData(Key: string, NewData: Types.UserData, _: Types.UserData?)
+local function SyncData(Key: string, NewData: Types.UserData, OldData: Types.UserData?)
 	local Player = Players:GetPlayerByUserId(tonumber(Key))
 	if Player then
-		Network.Data.SyncData:fire(Player, NewData)
+		local _OldData = OldData or DataTemplate
+		Network.Data.SyncData:fire(Player, _OldData, NewData)
 	end
 end
 

@@ -28,7 +28,7 @@ type SquareButtonProps = {
 	BackgroundImage: UsedAs<string>?,
 
 	Children: Child?,
-	Frame: UsedAs<string>?,
+	Frame: string?,
 	Callback: () -> ()?,
 }
 

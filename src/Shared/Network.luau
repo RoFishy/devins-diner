@@ -14,7 +14,7 @@ type Remotes = Remo.Remotes<{
 	},
 
 	Data: {
-		SyncData: Remo.ServerToClient<(Types.UserData)>,
+		SyncData: Remo.ServerToClient<(Types.UserData, Types.UserData)>,
 	},
 }>
 
@@ -27,7 +27,7 @@ local Remotes: Remotes = Remo.createRemotes({
 	}),
 
 	Data = Remo.namespace({
-		SyncData = Remo.remote(Schemas.UserData),
+		SyncData = Remo.remote(Schemas.UserData, Schemas.UserData),
 	}),
 })
 

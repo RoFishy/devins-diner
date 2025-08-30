@@ -8,5 +8,5 @@ return {
 	CloseAllFrames = Signal.new(),
 
 	-- // Data
-	PlayerDataChanged = Signal.new() :: Signal.Signal<Types.UserData>,
+	PlayerDataChanged = Signal.new() :: Signal.Signal<Types.UserData, Types.UserData>,
 }

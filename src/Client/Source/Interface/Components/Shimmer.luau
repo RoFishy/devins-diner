@@ -31,7 +31,7 @@ local function Shimmer(Scope: Fusion.Scope<typeof(Fusion)>, Props: ShimmerProps)
 				Transparency = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(0.15, 1),
-					NumberSequenceKeypoint.new(0.5, 0.55),
+					NumberSequenceKeypoint.new(0.5, 0.3),
 					NumberSequenceKeypoint.new(0.85, 1),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
