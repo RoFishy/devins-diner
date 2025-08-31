@@ -8,7 +8,7 @@ local WIND_SPEED = 50
 -- // init
 local WindController = {}
 
-function WindController:Start()
+function WindController.Start(_: WindController)
 	WindLines:Init({
 		Direction = WIND_DIRECTION,
 		Speed = WIND_SPEED,
@@ -17,4 +17,6 @@ function WindController:Start()
 	})
 end
 
-return WindController
+type WindController = typeof(WindController)
+
+return WindController :: WindController

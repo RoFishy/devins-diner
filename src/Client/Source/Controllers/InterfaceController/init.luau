@@ -47,7 +47,7 @@ local InterfaceController = {
 	CurrentScope = nil :: Fusion.Scope<typeof(Fusion)>?,
 }
 
-function InterfaceController:Init()
+function InterfaceController.Init(_: InterfaceController)
 	ScreenGui = Instance.new("ScreenGui")
 	ScreenGui.Name = "Interface"
 	ScreenGui.ResetOnSpawn = false
@@ -55,7 +55,7 @@ function InterfaceController:Init()
 	ScreenGui.Parent = PlayerGui
 end
 
-function InterfaceController:Start()
+function InterfaceController.Start(self: InterfaceController)
 	Signals.PlayerDataChanged:Connect(function(OldData, NewData)
 		TweenNumber(OldData.Cash, NewData.Cash, function(i)
 			Values.Wallet:set(i)
@@ -75,6 +75,8 @@ function InterfaceController:Start()
 			Bills = Values.Bills,
 
 			Energy = Values.Energy,
+
+			Open = Values.Open,
 		})
 	end)
 
@@ -92,7 +94,7 @@ function InterfaceController:Start()
 	end)
 end
 
-function InterfaceController:CloseAllFrames(KeepEffects: boolean?)
+function InterfaceController.CloseAllFrames(self: InterfaceController, KeepEffects: boolean?)
 	if not KeepEffects then
 		TweenService:Create(
 			Camera,
@@ -109,12 +111,15 @@ function InterfaceController:CloseAllFrames(KeepEffects: boolean?)
 	FrameOpen:set(false)
 
 	task.delay(0.2, function()
-		self.CurrentScope:doCleanup()
-		self.CurrentScope = nil :: any
+		if self.CurrentScope then
+			local CurrentScope = self.CurrentScope :: Fusion.Scope<typeof(Fusion)>
+			CurrentScope:doCleanup()
+			self.CurrentScope = nil :: any
+		end
 	end)
 end
 
-function InterfaceController:OpenFrame(Name: string)
+function InterfaceController.OpenFrame(self: InterfaceController, Name: string)
 	Values.HUDEnabled:set(false)
 
 	if self.CurrentFrame then
@@ -135,9 +140,10 @@ function InterfaceController:OpenFrame(Name: string)
 
 	local FrameModule = (require)(FrameModules[Name])
 
-	FrameModule(self.CurrentScope, {
-		Position = self.CurrentScope:Spring(
-			self.CurrentScope:Computed(function(Use, _)
+	local CurrentScope = self.CurrentScope :: Fusion.Scope<typeof(Fusion)>
+	FrameModule(CurrentScope, {
+		Position = CurrentScope:Spring(
+			CurrentScope:Computed(function(Use, _)
 				if Use(FrameOpen) == false then
 					return UDim2.fromScale(0.5, 0.9)
 				else
@@ -147,7 +153,7 @@ function InterfaceController:OpenFrame(Name: string)
 			25,
 			0.5
 		),
-		Parent = self.CurrentScope:New("ScreenGui")({
+		Parent = CurrentScope:New("ScreenGui")({
 			IgnoreGuiInset = true,
 			Name = "Frames",
 			Parent = game.Players.LocalPlayer.PlayerGui,
@@ -157,4 +163,9 @@ function InterfaceController:OpenFrame(Name: string)
 	FrameOpen:set(true)
 end
 
-return InterfaceController
+type InterfaceController = typeof(InterfaceController) & {
+	CurrentFrame: string?,
+	CurrentScope: Fusion.Scope<typeof(Fusion)>?,
+}
+
+return InterfaceController :: InterfaceController

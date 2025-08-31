@@ -1,3 +1,6 @@
 return {
-	PlayerFriends = {} :: { [Player]: { { DisplayName: string, Id: number, Username: string } } },
+	PlayerFriends = setmetatable(
+		{} :: { [Player]: { { DisplayName: string, Id: number, Username: string } } },
+		{ __mode = "k" }
+	),
 }

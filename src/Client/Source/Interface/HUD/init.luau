@@ -6,6 +6,7 @@ local Button = require("@Interface/HUD/Button")
 local EnergyBar = require("@Interface/HUD/EnergyBar")
 local LeftDisplay = require("@Interface/HUD/LeftDisplay")
 local RatingFrame = require("@Interface/HUD/RatingFrame")
+local StatusLabel = require("@Interface/HUD/StatusLabel")
 local TimeLabel = require("@Interface/HUD/TimeLabel")
 
 -- // fusion
@@ -24,6 +25,8 @@ type HUDProps = {
 	Bills: Fusion.Value<number>,
 
 	Energy: Fusion.Value<number>,
+
+	Open: Fusion.Value<boolean>,
 }
 
 -- // const
@@ -197,6 +200,21 @@ local function HUD(Scope: Scope<typeof(Fusion)>, Props: HUDProps)
 							return UDim2.fromScale(0, 0.915793)
 						else
 							return UDim2.fromScale(-0.5, 0.915793)
+						end
+					end),
+					TWEEN_INFO
+				),
+			}),
+
+			-- // Status Label
+			StatusLabel(Scope, {
+				Open = Props.Open,
+				Position = Scope:Tween(
+					Scope:Computed(function(Use)
+						if Use(Props.Enabled) == true then
+							return UDim2.fromScale(0.873401, 0.0488363)
+						else
+							return UDim2.fromScale(0.873401, -0.05)
 						end
 					end),
 					TWEEN_INFO

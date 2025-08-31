@@ -6,7 +6,7 @@ local TweenModel = require("@Shared/Utility/TweenModel")
 -- // init
 local TweenController = {}
 
-function TweenController:Start()
+function TweenController.Start(_: TweenController)
 	Network.Utility.TweenModel.Position:connect(function(Model, TargetCFrame, Info: any)
 		local Unpacked = TweenInfo.new(table.unpack(Info))
 		if Model:IsA("Model") then
@@ -15,4 +15,6 @@ function TweenController:Start()
 	end)
 end
 
-return TweenController
+type TweenController = typeof(TweenController)
+
+return TweenController :: TweenController

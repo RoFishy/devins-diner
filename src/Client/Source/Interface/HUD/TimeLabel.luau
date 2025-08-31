@@ -43,10 +43,10 @@ local function TimeLabel(Scope: Fusion.Scope<typeof(Fusion)>, Props: TimeLabelPr
 
 			Scope:New("TextLabel")({
 				Name = "TimeLabel",
-				AnchorPoint = Vector2.new(0.5, 0),
+				AnchorPoint = Vector2.new(0.5, 0.5),
 				BackgroundTransparency = 1,
 				FontFace = Font.new("rbxasset://fonts/families/FredokaOne.json"),
-				Position = UDim2.fromScale(0.499374, 0.255301),
+				Position = UDim2.fromScale(0.5, 0.5),
 				Size = UDim2.fromScale(0.529243, 0.505025),
 				Text = Props.Time,
 				TextColor3 = Color3.new(1, 1, 1),

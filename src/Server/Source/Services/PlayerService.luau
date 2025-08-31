@@ -55,23 +55,23 @@ local PlayerService = {
 	Store = PlayerStore,
 }
 
-function PlayerService:Start()
+function PlayerService.Start(self: PlayerService)
 	Players.PlayerAdded:Connect(function(Player: Player)
-		PlayerService.Store:loadAsync(Player)
-		PlayerService:_SetupLeaderstats(Player)
+		self.Store:loadAsync(Player)
+		self:_SetupLeaderstats(Player)
 		CachePlayerFriends(Player)
 	end)
 
 	Players.PlayerRemoving:Connect(function(Player: Player)
-		PlayerService.Store:unloadAsync(Player)
+		self.Store:unloadAsync(Player)
 	end)
 
 	game:BindToClose(function()
-		PlayerService.Store:closeAsync()
+		self.Store:closeAsync()
 	end)
 end
 
-function PlayerService:_SetupLeaderstats(Player: Player)
+function PlayerService._SetupLeaderstats(_: PlayerService, Player: Player)
 	local leaderstats = Instance.new("Folder")
 	leaderstats.Name = "leaderstats"
 	leaderstats.Parent = Player
@@ -85,5 +85,9 @@ function PlayerService:_SetupLeaderstats(Player: Player)
 		Cash.Value = PlayerData.Cash
 	end
 end
+
+type PlayerService = typeof(PlayerService) & {
+	Store: typeof(PlayerStore),
+}
 
 return PlayerService

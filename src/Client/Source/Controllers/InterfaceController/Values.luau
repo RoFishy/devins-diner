@@ -13,4 +13,6 @@ return {
 	Bills = UIScope:Value(0),
 
 	Energy = UIScope:Value(0),
+
+	Open = UIScope:Value(true),
 }

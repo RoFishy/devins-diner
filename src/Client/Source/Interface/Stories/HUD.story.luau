@@ -15,6 +15,8 @@ local Controls = {
 	Bills = 0,
 
 	Energy = 0,
+
+	Open = true,
 }
 
 local Story = {
@@ -33,6 +35,8 @@ local Story = {
 			Bills = props.controls.Bills,
 
 			Energy = props.controls.Energy,
+
+			Open = props.controls.Open,
 		})
 	end,
 }

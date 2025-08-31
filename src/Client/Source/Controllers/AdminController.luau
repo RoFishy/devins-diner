@@ -5,8 +5,10 @@ local Cmdr = (require)(ReplicatedStorage:WaitForChild("CmdrClient"))
 
 local AdminController = {}
 
-function AdminController:Start()
+function AdminController.Start(_: AdminController)
 	Cmdr:SetActivationKeys({ Enum.KeyCode.F2 })
 end
 
-return AdminController
+type AdminController = typeof(AdminController)
+
+return AdminController :: AdminController
