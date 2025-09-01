@@ -69,6 +69,8 @@ function RestaurantService.Start(_: RestaurantService)
 		if Hour and Hour > 12 then
 			Hour = Hour - 12
 			Suffix = "PM"
+		elseif Hour and Hour == 12 then
+			Suffix = "PM"
 		end
 
 		GameDataReplica:Set({ "GameTime" }, `{Hour}:{Minute}  {Suffix}`)
